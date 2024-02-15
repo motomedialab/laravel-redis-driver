@@ -1,0 +1,30 @@
+{
+    "name": "motomedialab/laravel-redis-driver",
+    "description": "A Laravel Redis driver override that enforces clearing of cache using prefixes, rather than a flush",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Motomedialab\\LaravelRedisDriver\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chris Page",
+            "email": "hello@motomedialab.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Motomedialab\\LaravelRedisDriver\\Providers\\CacheServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^8.0|^9.0|^10.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
