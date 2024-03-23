@@ -11,7 +11,7 @@ class CacheServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        Cache::extend('redis', function (Application $app) {
+        Cache::extend('redis', function (Application $app, array $config) {
             $connection = $config['connection'] ?? 'default';
 
             $prefix = $config['prefix'] ?? $app['config']['cache.prefix'];
