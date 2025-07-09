@@ -9,14 +9,16 @@ use Illuminate\Support\ServiceProvider;
 
 class CacheServiceProvider extends ServiceProvider
 {
-    public function boot(): void
+    public function register(): void
     {
-        Cache::extend('redis', function (Application $app, array $config) {
-            $connection = $config['connection'] ?? 'default';
-
-            $prefix = $config['prefix'] ?? $app['config']['cache.prefix'];
-
-            return Cache::repository(new RedisStore($app['redis'], $prefix, $connection));
+        $this->app->booting(function () {
+            Cache::extend('redis', function (Application $app, array $config) {
+                return Cache::repository(new RedisStore(
+                    $app['redis'],
+                    $config['prefix'] ?? $app['config']['cache.prefix'],
+                        $config['connection'] ?? 'default'
+                ));
+            });
         });
     }
 }
