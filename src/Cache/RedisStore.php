@@ -40,7 +40,7 @@ class RedisStore extends BaseRedisStore
 
         /* @phpstan-ignore-next-line */
         return LazyCollection::make(function () use ($connection, $chunkSize, $prefix) {
-            $cursor = $defaultCursorValue = '0';
+            $cursor = $defaultCursorValue = null;
 
             do {
                 /* @phpstan-ignore-next-line */
