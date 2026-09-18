@@ -44,7 +44,13 @@ class RedisStore extends BaseRedisStore
 
             do {
                 /* @phpstan-ignore-next-line */
-                [$cursor, $tagsChunk] = $connection->scan($cursor, ['match' => $prefix . '*', 'count' => $chunkSize]);
+                $result = $connection->scan($cursor, ['match' => $prefix . '*', 'count' => $chunkSize]);
+
+                if (!is_array($result)) {
+                    break;
+                }
+
+                [$cursor, $tagsChunk] = $result;
 
                 /* @phpstan-ignore-next-line */
                 if (!is_array($tagsChunk)) {
